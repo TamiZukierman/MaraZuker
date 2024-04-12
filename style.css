@@ -1,0 +1,66 @@
+/* ---------------RESET CSS -------------------*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    }
+
+a, li {
+    font-size: none;
+    text-decoration: none;
+    display: inline-block;
+    color: #0000EE;
+}
+
+/* ---------------HEADER-------------------*/
+
+#header{
+    background-color: #ffffff;
+    height: 120px;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 101;
+}
+
+#navBar{
+    display: flex;
+    width: 100%;
+    margin: 0;
+    height: 120px;
+    justify-content: space-between;
+    .menuNav{
+        display: flex;
+        height: 80px;
+        align-items: center;
+        ul{
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            float: right;
+            li{
+                display: inline-block;
+                margin: 0 5px;
+                a {
+                    color: #0000EE;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+
+.tituloHeader h1{
+    color: #0000EE;
+    font-size: 30px;
+    line-height: 68px;
+    margin-left: 5px;
+    font-weight: bold;
+    height: 80px;
+    margin-bottom: 0;
+}
+
