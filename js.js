@@ -7,21 +7,22 @@ console.log("la persona que ingreso es " + nombreIngresado);
 
 solicitarNombre()
 
-//INGRESO DE ELECCION DE ESTUDIO/SALA NO ME FUNCIONA EL BUCLE
+//INGRESO DE ELECCION DE ESTUDIO/SALA 
 
 let ingresarSala;
 do {
     ingresarSala = prompt("Ingresa A, B o C según la medida del estudio que necesitas: A) 3.5m x 4.5m, B) 5m x 5m, C) 8m x 10m");
-    ingresarSala = ingresarSala.toUpperCase();
+    if (ingresarSala != null) {
+        ingresarSala = ingresarSala.toUpperCase();
+    }
 
     if (ingresarSala !== "A" && ingresarSala !== "B" && ingresarSala !== "C") {
         alert("No has ingresado ninguna opción válida :(");
     } else {
         alert(`Elegiste el estudio ${ingresarSala}!`); 
         console.log(`El estudio elegido es ${ingresarSala}`);
-        break;
     }
-} while (true); 
+} while (ingresarSala !== "A" && ingresarSala !== "B" && ingresarSala !== "C"); 
 
 
 //INGRESO DE ELECCION DE CANTIDAD DE HORAS
@@ -35,9 +36,8 @@ do {
     } else {
         alert(`Seleccionaste ${ingresarHoras} horas!`);
         console.log(`La cantidad de horas ingresadas es ${ingresarHoras} horas!`);
-        break;
     }
-} while (true);
+} while (ingresarHoras < 2 || ingresarHoras > 8);
 
 
 //CALCULAR PRECIO 
@@ -54,11 +54,15 @@ function calcularPrecioEstudio(medida, horas) {
             case "C":
                 precioBase = 30000;
                 break;
-            default:
+            default: 
                 return "Elección inválida";
         }
-        let precioTotal = precioBase * horas;
-        return `El precio total por ${horas} horas en el estudio ${medida.toUpperCase()} es: $${precioTotal}`;
+        let descuento = 1
+        if (horas>2) {
+            descuento = calcularDescuento (horas)
+        }
+        let precioTotal = precioBase * descuento * horas;
+        return `El precio total por ${horas} horas en el estudio ${medida} es: $${precioTotal}`;
     }
     
     let medidaSeleccionada = ingresarSala;
@@ -68,3 +72,10 @@ function calcularPrecioEstudio(medida, horas) {
     alert(precioFinal)
     console.log("El precio final es: " + precioFinal)
     ;
+
+function calcularDescuento (horas) {
+    let porcentaje = 5;
+    return 1 - ((horas - 2)*porcentaje)/100;
+
+}
+
