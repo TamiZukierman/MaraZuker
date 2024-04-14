@@ -73,9 +73,11 @@ function calcularPrecioEstudio(medida, horas) {
     console.log("El precio final es: " + precioFinal)
     ;
 
+
+//CALCULAR DESCUENTO SEGUN CANTIDAD DE HORAS INGRESADAS (POR CADA HORA AGREGADA SE DESCUENTA UN 5%)
+
 function calcularDescuento (horas) {
     let porcentaje = 5;
     return 1 - ((horas - 2)*porcentaje)/100;
-
 }
 
