@@ -81,3 +81,57 @@ a, li {
         font-weight: bold;
         
 }
+
+/*-------------------------------------CONTACTO----------------------------------------*/
+#mainContacto {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    position: relative;
+    #formulario-contacto {
+        justify-content: space-between;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+}
+
+.titulos {
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    color: #ff1280;
+    margin-bottom: 15px;
+}
+
+#formulario-contacto {
+    font-size: 15px;
+    }
+
+#nombre , #email {
+    font-size: 15px;
+    background-color:rgba(255, 255, 255, 0.4);
+    border: 1px solid grey;
+    height: 35px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    }
+
+#mensaje {
+    font-size: 15px;
+    background-color: rgba(255, 255, 255, 0.4);
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    }
+
+    #submit .botonEnviar {
+        width: 100px;
+        background-color: rgba(255, 255, 255, 0.4);
+        padding: 10px;
+        border-radius: 80px;
+        color: rgb(63, 63, 63);
+        cursor: pointer;
+        
+    }
