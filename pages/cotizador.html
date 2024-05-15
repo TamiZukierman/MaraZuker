@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css">
     <title>estudio balcón</title>
-    <script src="../cotizador.js"></script>
+    
 </head>
 <body>
     <header id="header">
@@ -28,9 +28,36 @@
 
 
     <main>
-        <article class="TituloCotizador">
-        <h3>Cotizar estudio</h3>
-        </article>
+        <h1 class="TituloCotizador">Cotizar estudio</h1>
+        <label class="selectores">Elija un estudio:
+            <select class="estudio" name="estudio">
+                <option value="">Seleccione Uno …</option>
+                <option value="PALERMO">Palermo</option>
+                <option value="BELGRANO">Belgrano</option>
+                <option value="SAAVEDRA">Saavedra</option>
+            </select>
+        </label>
+        <div class="resultado1"></div>
+        <br><br>
+        <label class="selectores">Elija la cantidad de horas:
+            <select class="horas" name="horas">
+                <option value="">Seleccione Uno …</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+            </select>
+        </label>
+        <div class="resultado2"></div>
+        <br><br>
+    <div class="submit">
+    <button type="button" class="btn btn-outline-danger">Calcular Total</button>
+    </div>
+    <div id="total"></div>
     </main>
+    <script src="../cotizador.js"></script>
 </body>
 </html>

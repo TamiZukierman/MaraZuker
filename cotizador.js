@@ -1,103 +1,91 @@
-//FUNCION BIENVENIDA A ESTUDIO BALCON
-//DECLARACION DE CLASE ESTUDIO
+///////////////////////////////DECLARACION DE CLASE "ESTUDIO"//////////////////////////////////////////////////////
 class Estudio {
-    constructor (ubicacion, medida, horas, precioBase) {
+    constructor (ubicacion, medida, precioBase) {
     this.ubicacion = ubicacion;
     this.medida = medida;
-    this.horas = horas;
     this.precioBase = precioBase;
     }
 
-//---------------------------------------------------METODOS-----------------------------------------------------
-//CALCULAR PRECIO TOTAL 
-calcularPrecioTotal() {
+//------------------------------METODOS DE CLASE ESTUDIO------------------------------------------------------------
+//METODO CALCULAR PRECIO TOTAL 
+calcularPrecioTotal(horas) {
     let descuento = 1
-    if (this.horas>2) {
-        descuento = this.calcularDescuento();
+    if (horas>2) {
+        descuento = this.calcularDescuento(horas);
         }
-    let precioTotal = this.precioBase * descuento * this.horas;
-        return `El precio total por ${this.horas} horas en el estudio ${this.ubicacion} es: $${precioTotal}`;
+    let precioTotal = this.precioBase * descuento * horas;
+        return `El precio total por ${horas} horas en el estudio ${this.ubicacion} es: $${precioTotal}`;
 }
-//CALCULAR DESCUENTO SEGUN CANTIDAD DE HORAS INGRESADAS (POR CADA HORA AGREGADA SE DESCUENTA UN 5%)
-calcularDescuento () {
+//METODO CALCULAR DESCUENTO SEGUN CANTIDAD DE HORAS INGRESADAS (POR CADA HORA AGREGADA SE DESCUENTA UN 5%)
+calcularDescuento (horas) {
     let porcentaje = 5;
-    return 1 - ((this.horas - 2)*porcentaje)/100;
+    return 1 - ((horas - 2)*porcentaje)/100;
 }
 }
 
-//SOLICITAR DATOS AL USUARIO
-function solicitarNombre(){
-    let nombreIngresado = prompt("Ingresa tu nombre:")
-    alert("Buenvenido/a " + nombreIngresado + " a Estudio Balcón, llevar a cabo tus ideas es nuestra pasión!");
-    console.log("la persona que ingreso es " + nombreIngresado);
-    return nombreIngresado;
+///////////////////////////////////////SOLICITAR DATOS AL USUARIO///////////////////////////////////////////////////
+//FUNCION ELECCION DEL ESTUDIO
+function ingresarSala() {
+    // Seleccionar elementos por clase
+    const estudioElegido = document.querySelector(".estudio");
+    const resultadoEstudio = document.querySelector(".resultado1");
+
+    // Agregar evento de cambio al elemento select
+    estudioElegido.addEventListener("change", (event) => {
+        resultadoEstudio.textContent = `Seleccionaste el estudio: ${event.target.value}`;
+    });
+    return estudioElegido;
 }
+// Llamar a la función para activarla después de que se cargue el DOM
+document.addEventListener("DOMContentLoaded", ingresarSala);
 
-//FUNCIONES PARA INGRESAR SALA Y CANTIDAD DE HORAS POR PROMPT
-function ingresarSala () {
-    let ingresarSala;
-do {
-    ingresarSala = prompt(`Ingresa Palermo, Belgrano o Saavedra según el estudio que necesitas:
-        Palermo: 3.5m x 4.5m\n
-        Belgrano: 5m x 5m\n
-        Saavedra 8m x 10m)\n
-        `)
-    if (ingresarSala != null) {
-        ingresarSala = ingresarSala.toUpperCase();
-    }
 
-    if (ingresarSala !== "PALERMO" && ingresarSala !== "BELGRANO" && ingresarSala !== "SAAVEDRA") {
-        alert("No has ingresado ninguna opción válida :(");
-    } else {
-        alert(`Elegiste el estudio ${ingresarSala}!`); 
-        console.log(`El estudio elegido es ${ingresarSala}`);
-    }
-} while (ingresarSala !== "PALERMO" && ingresarSala !== "BELGRANO" && ingresarSala !== "SAAVEDRA");
-return ingresarSala;
-}
-
+//FUNCION ELECCION DE CANTIDAD DE HORAS
 function ingresarHoras () {
-let horasIngresadas
-do {
-    horasIngresadas = parseInt(prompt("Ingresa la cantidad de horas que necesitas (2-8):"));
-    if (horasIngresadas < 2 || horasIngresadas > 8) {
-        alert("No ingresaste ninguna opción válida :(");
-    } else {
-        alert(`Seleccionaste ${horasIngresadas} horas!`);
-        console.log(`La cantidad de horas ingresadas es ${horasIngresadas} horas!`);
-    }
-} while (horasIngresadas < 2 || horasIngresadas > 8);
-return horasIngresadas;
+    const horasElegidas = document.querySelector(".horas");
+    const resultadoHoras = document.querySelector(".resultado2");
+
+    // Agregar evento de cambio al elemento select
+    horasElegidas.addEventListener("change", (event) => {
+        resultadoHoras.textContent = `Seleccionaste: ${event.target.value} horas`;
+    });
+    return horasElegidas.value;
 }
+// Llamar a la función para activarla después de que se cargue el DOM
+document.addEventListener("DOMContentLoaded", ingresarHoras);
 
-//LLAMADO DE LAS FUNCIONES DE INGRESO
-let nombre = solicitarNombre();
-let sala = ingresarSala();
-let tiempo = ingresarHoras();
 
-let medidaSeleccionada = sala;
-let horasSeleccionadas = tiempo;
 
-// Creación de objetos utilizando la clase
-let estudio1 = new Estudio ("PALERMO", "3.5m x 4.5m", horasSeleccionadas, 20000);
-let estudio2 = new Estudio ("BELGRANO", "5m x 5m", horasSeleccionadas, 25000);
-let estudio3 = new Estudio ("SAAVEDRA", "8m x 10m", horasSeleccionadas, 30000);
+// CREACION DE OBJETOS (LOS 3 ESTUDIOS) UTILIZANDO CLASE
+let estudio1 = new Estudio ("PALERMO", "3.5m x 4.5m", 20000);
+let estudio2 = new Estudio ("BELGRANO", "5m x 5m", 25000);
+let estudio3 = new Estudio ("SAAVEDRA", "8m x 10m", 30000);
 
-//ARRAY DE OBJETOS
+//ARRAY DE LOS OBJETOS
 const estudios = [
 estudio1,
 estudio2,
 estudio3
 ];
 
-//RECORRER EL ARRAY 
-let precioTotal = 0;
+///////////////////////////EVENTO CLICK PARA CLACULAR Y ARROJA EL RESULTADO TOTAL AL USUARIO/////////////////////////////////////////
+const totalCotizacion = document.querySelector(".btn-outline-danger");
+totalCotizacion.addEventListener("click", (event) => {
+    //LLAMADO DE LAS FUNCIONES DE INGRESO
+let sala = ingresarSala();
+let tiempo = ingresarHoras();
 
-for (const estudio of estudios){
-    if (estudio.ubicacion === sala){
-        precioTotal = estudio.calcularPrecioTotal(tiempo);
-        break;
-    }
+let ubicacionSeleccionada = sala;
+let horasSeleccionadas = tiempo;
+
+for (estudio of estudios) {
+if (ubicacionSeleccionada.value === estudio.ubicacion) {
+const claculoTotal = document.getElementById("total");
+claculoTotal.textContent = `${estudio.calcularPrecioTotal(horasSeleccionadas)}`;
 }
-
-alert(precioTotal);
+//else if (ubicacionseleccionada.value === "" || horasSeleccionadas === "") {
+    //claculoTotal.textContent = ("No selecciono alguna o ambas opciones");
+//}
+}
+}
+);

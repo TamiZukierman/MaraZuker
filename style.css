@@ -15,32 +15,43 @@ a, li {
     color: #0000EE;
 }
 
+/*-------------------------------------INICIO--------------------------------------------------------------*/
+#body {
+    background-image: url(imagenes/estudio3.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /* ---------------HEADER-------------------*/
 
 #header{
     background-color: #ffffff;
-    height: 80px;
+    height: 50px;
     width: 100%;
     position: sticky;
     top: 0;
     z-index: 101;
+    margin-bottom: 40px;
 }
 
 #navBar{
     display: flex;
+    height: 50px;
     width: 100%;
     margin: 0;
     height: 120px;
     justify-content: space-between;
     .menuNav{
+        align-items: end;
         display: flex;
         height: 80px;
-        align-items: center;
         ul{
+            height: 50px;
             margin: 0;
             padding: 0;
             text-decoration: none;
             float: right;
+            
             li{
                 display: inline-block;
                 margin: 0 5px;
@@ -58,30 +69,40 @@ a, li {
 
 
 .tituloHeader h1{
+    height: 50px;
     color: #0000EE;
     font-size: 30px;
     line-height: 68px;
     margin-left: 5px;
     font-weight: bold;
-    height: 80px;
-    margin-bottom: 0;
-    margin-left: 15px;
+    align-items: end;
+    margin-left: 10px;
 }
 
 /*....................................COTIZADOR......................................*/
 
 .TituloCotizador {
+    font-size: 20px;
     width: 100%;
+    color: #ff1280;
+    font-size: 25px;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 50px;
 }
-.TituloCotizador 
-        h3{
-        color: #ff1280;
-        font-size: 25px;
-        margin: 0;
-        text-align: center;
-        font-weight: bold;
-        
+
+.selectores {
+    margin-left: 10px;
 }
+
+.btn-outline-danger {
+    margin-left: 10px;
+}
+.resultado1, .resultado2, #total {
+    margin-left: 10px;
+}
+
 
 /*-------------------------------------CONTACTO----------------------------------------*/
 #mainContacto {
@@ -128,7 +149,7 @@ a, li {
     border-radius: 4px;
     }
 
-    #submit .botonEnviar {
+    .submit .botonEnviar {
         width: 100px;
         background-color: rgba(255, 255, 255, 0.4);
         padding: 10px;
@@ -136,4 +157,13 @@ a, li {
         color: rgb(63, 63, 63);
         cursor: pointer;
         
+    }
+
+    #btnCalcular {
+        width: 100px;
+        background-color: rgba(255, 255, 255, 0.4);
+        padding: 10px;
+        border-radius: 80px;
+        color: rgb(63, 63, 63);
+        cursor: pointer;
     }
