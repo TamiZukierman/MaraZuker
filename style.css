@@ -39,7 +39,6 @@ a, li {
     height: 50px;
     width: 100%;
     margin: 0;
-    height: 120px;
     justify-content: space-between;
     .menuNav{
         align-items: end;
@@ -89,16 +88,15 @@ a, li {
     margin: 0;
     text-align: center;
     font-weight: bold;
-    margin-bottom: 50px;
+    
+    
 }
 
-.selectores {
+.selectores, .btn-outline-danger {
     margin-left: 10px;
+    margin-top: 30px;
 }
 
-.btn-outline-danger {
-    margin-left: 10px;
-}
 .resultado1, .resultado2, #total {
     margin-left: 10px;
 }
