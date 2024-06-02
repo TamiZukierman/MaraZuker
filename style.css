@@ -16,7 +16,7 @@ a, li {
 }
 
 /*-------------------------------------INICIO--------------------------------------------------------------*/
-#body {
+.body {
     background-image: url(imagenes/estudio3.jpg);
     background-repeat: no-repeat;
     background-size: cover;

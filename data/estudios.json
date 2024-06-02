@@ -1,0 +1,17 @@
+[
+    {
+    "ubicacion": "PALERMO",
+    "medida": "3.5m x 4.5m",
+    "precioBase": 20000
+    },
+    {
+    "ubicacion": "BELGRANO",
+    "medida": "5m x 5m",
+    "precioBase": 25000
+    },
+    {
+    "ubicacion": "SAAVEDRA",
+    "medida": "8m x 10m",
+    "precioBase": 30000
+    }
+]

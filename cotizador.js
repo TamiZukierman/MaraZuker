@@ -6,7 +6,7 @@ class Estudio {
     this.precioBase = precioBase;
     }
 
-//------------------------------METODOS DE CLASE ESTUDIO------------------------------------------------------------
+//------------------------------------METODOS DE CLASE ESTUDIO---------------------------
 //METODO CALCULAR PRECIO TOTAL 
 calcularPrecioTotal(horas) {
     let descuento = 1
@@ -23,8 +23,10 @@ calcularDescuento (horas) {
 }
 }
 
+
+
 ///////////////////////////////////////SOLICITAR DATOS AL USUARIO///////////////////////////////////////////////////
-//FUNCION ELECCION DEL ESTUDIO
+////////////////////////FUNCION ELECCION DEL ESTUDIO///////////////////////////////////////////////////////
 function ingresarSala() {
     // Seleccionar elementos por clase
     const estudioElegido = document.querySelector(".estudio");
@@ -32,7 +34,12 @@ function ingresarSala() {
 
     // Agregar evento de cambio al elemento select
     estudioElegido.addEventListener("change", (event) => {
-        resultadoEstudio.textContent = `Seleccionaste el estudio: ${event.target.value}`;
+        Swal.fire({
+            text:  `Seleccionaste el estudio: ${event.target.value}`,
+            icon: "info",
+            iconColor: "#ff1280",
+            confirmButtonColor: "#0000EE",
+        });
     });
     return estudioElegido;
 }
@@ -40,14 +47,19 @@ function ingresarSala() {
 document.addEventListener("DOMContentLoaded", ingresarSala);
 
 
-//FUNCION ELECCION DE CANTIDAD DE HORAS
+//////////////////////////FUNCION ELECCION DE CANTIDAD DE HORAS////////////////////////////////////////////////////
 function ingresarHoras () {
     const horasElegidas = document.querySelector(".horas");
     const resultadoHoras = document.querySelector(".resultado2");
 
     // Agregar evento de cambio al elemento select
     horasElegidas.addEventListener("change", (event) => {
-        resultadoHoras.textContent = `Seleccionaste: ${event.target.value} horas`;
+        Swal.fire({
+            text:  `Seleccionaste: ${event.target.value} horas`,
+            icon: "info",
+            iconColor: "#ff1280",
+            confirmButtonColor: "#0000EE",
+        });
     });
     return horasElegidas.value;
 }
@@ -55,20 +67,19 @@ function ingresarHoras () {
 document.addEventListener("DOMContentLoaded", ingresarHoras);
 
 
+/////////////////////////////////////PETICION A JSON LOCAL Y USO DE FETCH///////////////////////////////////////////
 
-// CREACION DE OBJETOS (LOS 3 ESTUDIOS) UTILIZANDO CLASE
-let estudio1 = new Estudio ("PALERMO", "3.5m x 4.5m", 20000);
-let estudio2 = new Estudio ("BELGRANO", "5m x 5m", 25000);
-let estudio3 = new Estudio ("SAAVEDRA", "8m x 10m", 30000);
+let estudios;
 
-//ARRAY DE LOS OBJETOS
-const estudios = [
-estudio1,
-estudio2,
-estudio3
-];
+const misDatos ="../data/estudios.json";
+fetch(misDatos)
+    .then((response) => response.json())
+    .then((data) => {
+        estudios = data;
+});
 
-///////////////////////////EVENTO CLICK PARA CLACULAR Y ARROJA EL RESULTADO TOTAL AL USUARIO/////////////////////////////////////////
+
+//////////////////////EVENTO CLICK PARA CLACULAR Y ARROJA EL RESULTADO TOTAL AL USUARIO///////////////////////
 const totalCotizacion = document.querySelector(".btn-outline-danger");
 totalCotizacion.addEventListener("click", (event) => {
     //LLAMADO DE LAS FUNCIONES DE INGRESO
@@ -78,14 +89,25 @@ let tiempo = ingresarHoras();
 let ubicacionSeleccionada = sala;
 let horasSeleccionadas = tiempo;
 
+
+////////////////RECORRIDO DE LOS OBJETOS DEL ARCHIVO .JSON///////////////////////////////////////////////////
 for (estudio of estudios) {
+
+    //CONSTRUCCION DE OBJETO A PARTIR DE .JSON
+    let objetoEstudio = new Estudio (estudio.ubicacion, estudio.medida, estudio.precioBase);
+
 if (ubicacionSeleccionada.value === estudio.ubicacion) {
 const claculoTotal = document.getElementById("total");
-claculoTotal.textContent = `${estudio.calcularPrecioTotal(horasSeleccionadas)}`;
+Swal.fire({
+    text:  `${objetoEstudio.calcularPrecioTotal(horasSeleccionadas)}`,
+    icon: "info",
+    iconColor: "#ff1280",
+    confirmButtonColor: "#0000EE",
+});
 }
-//else if (ubicacionseleccionada.value === "" || horasSeleccionadas === "") {
-    //claculoTotal.textContent = ("No selecciono alguna o ambas opciones");
-//}
-}
-}
-);
+}   
+});
+
+
+
+

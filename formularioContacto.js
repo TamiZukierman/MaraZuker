@@ -10,6 +10,8 @@ function mostrarNombre() {
     if (formularioGuardado) {
         const form = JSON.parse(formularioGuardado);
         elementoNombre.textContent = "Hola " + form.nombre + "!";
+        elementoNombre.style.color = "#ff1280"; 
+
     }
     else {
       //Si no hay un nombre guardado, mostrar un mensaje predeterminado
@@ -36,12 +38,14 @@ const objForm = {"nombre": nombre, "email": email, "mensaje": mensaje};
 const enJason = JSON.stringify (objForm);
 localStorage.setItem("contactoForm", enJason);
 
-//MOSTRAR RESPUESTA AL USUARIO
-document.getElementById("respuesta-envio").innerHTML = 
-`<strong>Gracias por contactarnos, ${nombre}!</strong><br>
-Hemos recibido tu mensaje y te responderemos a <em>${email}</em> pronto.`;
-}
+Swal.fire({
+    html: `Gracias por contactarnos, <strong>${nombre}</strong>!<br>Hemos recibido tu mensaje y te responderemos a <strong>${email}</strong> pronto!`,
+    icon: "info",
+    iconColor: "#ff1280",
+    confirmButtonColor: "#0000EE",
+});
 
+}
 
 //EVENTO AL FORMULARIO PARA DETECTAR EL ENVIO
 document.getElementById('submit').addEventListener('click', enviarFormulario);
